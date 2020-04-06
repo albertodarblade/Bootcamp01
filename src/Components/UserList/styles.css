@@ -1,0 +1,5 @@
+.userListCmpt {
+  max-width: 380px;
+  box-shadow: 0 5px 10px rgba(154,160,185,0.025),0 15px 40px #a6adc9;
+  border-radius: 4px;
+}
