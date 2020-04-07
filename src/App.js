@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import UserList from './Components/UserList';
 import UserForm from './Components/UserForm';
+import Tree from './Components/Tree';
 import './App.css';
 
 function App() {
@@ -13,11 +14,12 @@ function App() {
 
   return (
     <div className="App">
-      <UserForm />
+      <Tree />
+     {/*  <UserForm />
       <button onClick={toggleViews}> toggle </button>
       {views && <UserList />}
       {!views && <div> empty </div>}
-
+ */}
     </div>
   );
 }

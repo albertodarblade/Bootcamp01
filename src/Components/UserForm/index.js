@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import userRest from '../../Rest/Users';
+import useApiPost from '../../Hooks/useApiPost';
 
 function UserForm() {
   const [form, setForm] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+
+  const [handleAsync, data] = useApiPost();
 
   function handleChange(event, key) {
     const newObject = {};
@@ -13,20 +14,14 @@ function UserForm() {
   }
 
   async function handleSubmit() {
-    try {
-      setLoading(true);
-      const response = await userRest.postUser(form);
-      setLoading(false);
-    } catch (error) {
-      setError(error);
-    }
+    handleAsync(() => userRest.postUser(form))
   }
 
-  if(error) {
-    return <div> ERROR: {error.message}</div>
+  if(data.error) {
+    return <div> ERROR: {data.error.message}</div>
   }
 
-  if(loading) {
+  if(data.loading) {
     return <div> Saving... </div>;
   }
 

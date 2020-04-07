@@ -2,15 +2,17 @@ import React, { useEffect } from 'react';
 import userRest from '../../Rest/Users';
 import User from '../User';
 import useApi from '../../Hooks/useApi';
+import useInterval from '../../Hooks/useInterval';
+
 import './styles.css';
 
 const REFRESH_TIME = 5000;
 
-let interval;
 
 function UserList() {
 
   const [users = [], loading, error] = useApi(loadUsers);
+  useInterval(loadUsers, REFRESH_TIME);
 
   async function loadUsers() {
     try {
@@ -21,24 +23,6 @@ function UserList() {
       console.error(error);
     }
   }
-
-  useEffect(() => {
-    initRefreshInterval();
-    return clearRefreshInterval;
-  }, []);
-
-  function clearRefreshInterval() {
-    console.log('Clearing');
-    clearInterval(interval);
-  }
-
-  function initRefreshInterval() {
-    console.log('initianing');
-    interval = setInterval(() => {
-      loadUsers();
-    }, REFRESH_TIME);
-  }
-
 
   if (loading) {
     return <div> loading... </div>;
