@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import userRest from '../../Rest/Users';
 import useApiPost from '../../Hooks/useApiPost';
+import withTurn from '../../HOC/withTurn';
+import withView from '../../HOC/withView';
 
-function UserForm() {
+function UserForm({ isOnline, turn }) {
   const [form, setForm] = useState({});
 
   const [handleAsync, data] = useApiPost();
@@ -27,6 +29,8 @@ function UserForm() {
 
   return (
     <div>
+      <label> isOnline: {isOnline}</label>
+      <label> turn: {turn}</label>
       <label> name (controlled)</label>
       <input value={form.name} type="text" name="name" onChange={event => handleChange(event, 'name')} />
 
@@ -37,4 +41,4 @@ function UserForm() {
   )
 }
 
-export default UserForm;
+export default withView(withTurn(UserForm));

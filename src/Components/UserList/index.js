@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import userRest from '../../Rest/Users';
-import User from '../User';
+import List from '../List';
 import useApi from '../../Hooks/useApi';
 import useInterval from '../../Hooks/useInterval';
+import withView from '../../HOC/withView';
+
 
 import './styles.css';
 
@@ -24,20 +26,17 @@ function UserList() {
     }
   }
 
-  if (loading) {
-    return <div> loading... </div>;
-  }
-
   if(error) {
     return <div> Error, {error.message}</div>
   }
 
   return (
+
     <section className="userListCmpt">
-      {users.map((user, index) => <User key={index} {...user}/>)}
+      <List users={users}/>
     </section>
   );
 }
 
 
-export default UserList;
+export default withView(UserList);
