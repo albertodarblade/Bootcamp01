@@ -33,7 +33,7 @@ function UserList() {
   return (
 
     <section className="userListCmpt">
-      <List users={users}/>
+      <List users={users} />
     </section>
   );
 }

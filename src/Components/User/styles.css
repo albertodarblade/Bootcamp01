@@ -4,6 +4,12 @@
   align-items: center;
 }
 
+.userCmpt.dark {
+  background: #000;
+  color: #fff;
+}
+
+
 .userCmpt img {
   height: 64px;
   width: 64px;

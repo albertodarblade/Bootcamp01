@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import propTypes from 'prop-types';
 import './styles.css'
 
 function User({ name, avatar, email, teams }) {
 
   return (
-    <section className="userCmpt">
+    <section className={`userCmpt`}>
       <img src={avatar} alt="user" />
       <div className="information">
         <div>{name}</div>
